@@ -25,6 +25,8 @@ library
     exposed-modules:
         Interpreter
         Extension
+        Push
+        Typed
     default-extensions:
         TypeSynonymInstances
         FlexibleInstances
