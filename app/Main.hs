@@ -4,4 +4,4 @@ import Core
 import Ext
 
 main :: IO ()
-main = putStrLn "Please run in GHCi."
+main = putStrLn "TFSI: Build Success. Please run me in GHCi!"
