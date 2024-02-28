@@ -21,6 +21,18 @@ instance ExtBool Str where
     eq e1 e2 = Str $ \h -> "( " ++ str e1 h ++ " == " ++ str e2 h ++ " )"
     ifel e1 e2 e3 = Str $ \h -> "(if " ++ str e1 h ++ " then " ++ str e2 h ++ " else " ++ str e3 h ++ " )"
 
+instance ExtBool Hsk where
+    bool b = Hsk $ \h -> show b
+    lseq e1 e2 = Hsk $ \h -> "( " ++ hsk e1 h ++ " <= " ++ hsk e2 h ++ " )"
+    eq e1 e2 = Hsk $ \h -> "( " ++ hsk e1 h ++ " == " ++ hsk e2 h ++ " )"
+    ifel e1 e2 e3 = Hsk $ \h -> "(if " ++ hsk e1 h ++ " then " ++ hsk e2 h ++ " else " ++ hsk e3 h ++ " )"
+
+instance ExtBool Len where
+    bool b = Len 1
+    lseq e1 e2 = Len $ len e1 + len e2 + 1
+    eq e1 e2 = Len $ len e1 + len e2 + 1
+    ifel e1 e2 e3 = Len $ len e1 + len e2 + len e3 + 1
+
 class ExtFix exp where
     fix :: exp h (a -> a) -> exp h a
 
@@ -28,4 +40,10 @@ instance ExtFix Exp where
     fix e = Exp $ \h -> (ev e h) (ev (fix e) h)
 
 instance ExtFix Str where
-    fix e = Str $ \h -> "(fix " ++ str e h ++ " )" 
+    fix e = Str $ \h -> "(fix " ++ str e h ++ " )"
+
+instance ExtFix Hsk where
+    fix e = Hsk $ \h -> "(fix " ++ hsk e h ++ " )" 
+
+instance ExtFix Len where
+    fix e = Len $ len e + 1

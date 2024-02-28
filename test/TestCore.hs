@@ -1,4 +1,4 @@
-module Test where
+module TestCore where
 
 import Core
 import Ext
@@ -20,3 +20,6 @@ test5 = l test4
 
 test6 :: (Core exp, ExtBool exp, ExtFix exp) => exp () (Int)
 test6 = a (a test5 (int 7)) (int 2)
+
+test7 :: (Core exp, ExtBool exp, ExtFix exp) => exp () (Int)
+test7 = (a (l (add z (int 2))) (int 1))
