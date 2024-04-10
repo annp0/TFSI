@@ -19,13 +19,13 @@ instance ExtBool Str where
     bool b = Str $ \h -> show b
     lseq e1 e2 = Str $ \h -> "( " ++ str e1 h ++ " <= " ++ str e2 h ++ " )"
     eq e1 e2 = Str $ \h -> "( " ++ str e1 h ++ " == " ++ str e2 h ++ " )"
-    ifel e1 e2 e3 = Str $ \h -> "(if " ++ str e1 h ++ " then " ++ str e2 h ++ " else " ++ str e3 h ++ " )"
+    ifel e1 e2 e3 = Str $ \h -> "(if " ++ str e1 h ++ " \nthen " ++ str e2 h ++ " \nelse " ++ str e3 h ++ " )"
 
 instance ExtBool Hsk where
     bool b = Hsk $ \h -> show b
     lseq e1 e2 = Hsk $ \h -> "( " ++ hsk e1 h ++ " <= " ++ hsk e2 h ++ " )"
     eq e1 e2 = Hsk $ \h -> "( " ++ hsk e1 h ++ " == " ++ hsk e2 h ++ " )"
-    ifel e1 e2 e3 = Hsk $ \h -> "(if " ++ hsk e1 h ++ " then " ++ hsk e2 h ++ " else " ++ hsk e3 h ++ " )"
+    ifel e1 e2 e3 = Hsk $ \h -> "(if " ++ hsk e1 h ++ " \nthen " ++ hsk e2 h ++ " \nelse " ++ hsk e3 h ++ " )"
 
 instance ExtBool Len where
     bool b = Len 1

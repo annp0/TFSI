@@ -24,12 +24,15 @@ library
     exposed-modules:
         Core
         Ext
+        Compile
     default-extensions:
         TypeSynonymInstances
         FlexibleInstances
         InstanceSigs
+        TemplateHaskell
     build-depends:    
-        base ^>=4.16.4.0
+        base ^>=4.16.4.0,
+        template-haskell
     hs-source-dirs:   app
     default-language: Haskell2010
     
